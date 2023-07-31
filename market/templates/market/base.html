@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>Маркетплейс объявлений</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333333;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+        }
+
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #337ab7;
+            color: #ffffff;
+            border: none;
+            border-radius: 3px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #286090;
+        }
+    </style>
+</head>
+<body>
+      <div class="container">
+        <div class="auth-buttons">
+            <a href="/auth/register">Регистрация</a>
+            <a href="/auth/login">Авторизация</a>
+            <a href="/auth/logout">Выход</a>
+            <a href="/market/profile">Профиль</a>
+            <a href="/market/favorites">Избранное</a>
+            <a href="/market">GGT</a>
+        </div>
+    <div class="container">
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'market/base.html' %}
+
+
+{% block content %}
+<a href="{% url 'market:create_product' %}"><button type="submit">Разместить объявление</button></a>
+</form>
+    {% for product in products %}
+        <div class="product">
+            <h1><a href="{% url "market:product_detail" product.id %}">{{ product.service_name }}</a></h1>
+            <p>Описание: {{ product.discription}}</p>
+            {% if product.user == user %}
+                    <form action="{% url 'market:edit_product' product.id %}" method="PUT">
+                    {% csrf_token %}
+                    <button type="submit">Редактировать</button>
+                    </form>
+            {% endif %}
+            {% if product.user == user %}
+                    <form action="{% url 'market:delete_product' product.id %}" method="DELETE">
+                    {% csrf_token %}
+                    <button type="submit">Удалить</button>
+                    </form>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}

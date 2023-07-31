@@ -1,0 +1,49 @@
+{% extends 'market/base.html' %}
+
+{% block content %}
+    <div class="product">
+          {% if is_favorite %}
+              <form action="{% url 'market:toggle_favorite' product.id%}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Удалить из избранного</button>
+                </form>
+          {% else %}
+              <form action="{% url 'market:toggle_favorite' product.id%}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Добавить в избранное</button>
+                </form>
+          {% endif %}
+        <h1>{{ product.service_name }}</h1>
+        <p>Версия: {{ product.game_version}}</p>
+        <p>Тип услуги: {{ product.service_type}}</p>
+        <p>Цена в золоте: {{ product.price}}</p>
+        <p>Описание: {{ product.discription}}</p>
+        {% if product.user == user %}
+                    <form action="{% url 'market:edit_product' product.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Редактировать</button>
+                    </form>
+        {% endif %}
+        {% if product.user == user %}
+                    <form action="{% url 'market:delete_product' product.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Удалить</button>
+                    </form>
+        {% endif %}
+        <h2>Оставить отзыв</h2>
+        <form method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Оставить отзыв</button>
+        </form>
+   
+        <h2>Отзывы</h2>
+        {% for review in reviews %}
+          <div>
+            <p><strong>{{ review.author }}</strong></p>
+            <p>{{ review.content }}</p>
+          </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

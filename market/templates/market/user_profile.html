@@ -1,0 +1,8 @@
+{% extends 'market/base.html' %}
+
+{% block content %}
+      <h1>Личный профиль</h1>
+      <p>Имя пользователья: {{ user.username }}</p>
+      <p>Номер телефона: {{ user.phone_number }}</p>
+      <p>Адрес электронной почты: {{ user.email_address }}</p>
+{% endblock %}

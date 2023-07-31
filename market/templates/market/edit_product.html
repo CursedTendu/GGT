@@ -1,0 +1,11 @@
+{% extends 'market/base.html' %}
+
+{% block content %}
+    <h1>Редактировать продукт</h1>
+    <form method="put">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+        <a href="{% url 'market:product_list' %}">Отмена</a>
+    </form>
+{% endblock %}

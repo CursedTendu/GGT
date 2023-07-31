@@ -1,0 +1,14 @@
+{% extends 'market/base.html' %}
+
+{% block content %}
+<h1>Избранные объявления</h1>
+{% if favorites %}
+    <ul>
+        {% for favorite in favorites %}
+            <li><a href="{% url "market:product_detail" favorite.product.id %}">{{ favorite.product.service_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Ваш список избранных объявлений пуст.</p>
+{% endif %}
+{% endblock %}
