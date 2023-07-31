@@ -1,0 +1,26 @@
+{% extends 'market/base.html' %}
+
+
+{% block content %}
+<h2>{{ profile.user.username }}</h2>
+
+<h3>Размещенные объявления:</h3>
+{% for product in products %}
+<a href="{% url "market:product_detail" product.id %}">{{ product.service_name }}</a>
+{% empty %}
+    <p>Пользователь еще не разместил объявлений.</p>
+{% endfor %}
+<h3>Средняя оценка: {{ average_rating }}</h3>
+<h3>Оценить пользователя:</h3>
+<form method="POST" action="{% url 'market:profile' profile.user.username %}">
+  {% csrf_token %}
+  <select name="rating">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <button type="submit">Оценить</button>
+</form>
+{% endblock %}

@@ -33,6 +33,16 @@ class Product(models.Model):
     def __str__(self):
         return self.service_name
        
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True)
+    location = models.CharField(max_length=100, blank=True)
+    average_rating = models.DecimalField(max_digits=3, decimal_places=2, default=0)
+
+class Rating(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='ratings')
+    rating = models.IntegerField()
+
 class Review(models.Model):
        author = models.CharField(max_length=100)
        content = models.TextField()
